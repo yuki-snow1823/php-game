@@ -32,4 +32,14 @@ class Human
   {
     $this->name = $name;
   }
+
+  public function getHitPoint()
+  {
+    return $this->hitPoint;
+  }
+
+  public function getAttackPoint()
+  {
+    return $this->attackPoint;
+  }
 }
