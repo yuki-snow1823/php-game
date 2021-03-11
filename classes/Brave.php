@@ -2,6 +2,10 @@
 
 class Brave extends Human // 同階層だと呼び出せる？＝＞同階層でなくとも呼べた
 {
+  const MAX_HITPOINT = 120;
+  public $hitPoint = self::MAX_HITPOINT;
+  public $attackPoint = 30;
+    
   public function doAttack($enemy)
   {
     // 乱数の発生
