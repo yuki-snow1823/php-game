@@ -13,12 +13,19 @@ class Human
     $this->hitPoint = $hitPoint;
     $this->attackPoint = $attackPoint;
   }
-
+  
+  public function recoveryDamage($heal, $target)
+  {
+    $this->hitPoint += $heal;
+    if ($this->hitPoint > $target::MAX_HITPOINT) {
+      $this->hitPoint = $target::MAX_HITPOINT;
+    }
+  }
   // メソッド
   public function doAttack($enemy)
   {
-echo "『" .$this->getName() . "』の攻撃！\n";
-         echo "【" . $enemy->getName() . "】に " . $this->attackPoint . " のダメージ！\n";
+    echo "『" . $this->getName() . "』の攻撃！\n";
+    echo "【" . $enemy->getName() . "】に " . $this->attackPoint . " のダメージ！\n";
     $enemy->tookDamage($this->attackPoint);
   } // thisにはクラスが入る
 
