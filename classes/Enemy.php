@@ -7,6 +7,26 @@ class Enemy
   private $hitPoint = 50; // public → privateに変更
   private $attackPoint = 10; // public → privateに変更
 
+  public function __construct($name)
+  {
+    $this->name = $name;
+  }
+
+  public function getName()
+  {
+    return $this->name;
+  }
+
+  public function getHitPoint()
+  {
+    return $this->hitPoint;
+  }
+
+  public function getAttackPoint()
+  {
+    return $this->attackPoint;
+  }
+
   public function doAttack($human)
   {
     echo "『" . $this->name . "』の攻撃！\n";

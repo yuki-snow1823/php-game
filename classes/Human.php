@@ -7,6 +7,13 @@ class Human
   private $hitPoint = 100; // public → privateに変更
   private $attackPoint = 20; // public → privateに変更
 
+  public function __construct($name, $hitPoint = 100, $attackPoint = 20) // デフォ
+  {
+    $this->name = $name;
+    $this->hitPoint = $hitPoint;
+    $this->attackPoint = $attackPoint;
+  }
+
   // メソッド
   public function doAttack($enemy)
   {
@@ -28,10 +35,11 @@ class Human
     return $this->name;
   }
 
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
+  // public function setName($name)
+  // {
+  //   $this->name = $name;
+  // }
+  // コンストラクタで定義するようにした
 
   public function getHitPoint()
   {
