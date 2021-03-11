@@ -18,7 +18,7 @@ $tiida = new Brave(); // ここを変更
 $goblin = new Enemy();
 
 //========== ここから追加する ==========
-$tiida->name = "ティーダ";
+$tiida->name = "ティーダ"; // nameがprivateだと落ちる
 $goblin->name = "ゴブリン";
 //========== ここまで追加する ==========
 

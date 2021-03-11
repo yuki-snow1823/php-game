@@ -3,9 +3,9 @@
 class Human
 {
   const MAX_HITPOINT = 100; // 最大HPの定義 定数
-  public $name; // 人間の名前
-  public $hitPoint = 100; // 現在のHP
-  public $attackPoint = 20; // 攻撃力
+  private $name; // public → privateに変更
+  private $hitPoint = 100; // public → privateに変更
+  private $attackPoint = 20; // public → privateに変更
 
   // メソッド
   public function doAttack($enemy)

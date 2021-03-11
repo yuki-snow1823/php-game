@@ -3,8 +3,8 @@
 class Brave extends Human // 同階層だと呼び出せる？＝＞同階層でなくとも呼べた
 {
   const MAX_HITPOINT = 120;
-  public $hitPoint = self::MAX_HITPOINT;
-  public $attackPoint = 30;
+  private $hitPoint = self::MAX_HITPOINT; // public → privateに変更
+  private $attackPoint = 30; // public → privateに変更
     
   public function doAttack($enemy)
   {
