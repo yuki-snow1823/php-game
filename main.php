@@ -3,13 +3,18 @@
 // ファイルのロード
 require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
+require_once('./classes/Brave.php'); // ここを追加
+
+// インスタンス化
+// $tiida = new Human();
+$tiida = new Brave(); // ここを変更
 
 // 再読み込みしない
 
 /************** 中略 **************/
 
 // インスタンス化
-$tiida = new Human();
+// $tiida = new Human();
 $goblin = new Enemy();
 
 //========== ここから追加する ==========
