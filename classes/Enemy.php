@@ -7,9 +7,11 @@ class Enemy
   private $hitPoint = 50; // public → privateに変更
   private $attackPoint = 10; // public → privateに変更
 
-  public function __construct($name)
+  public function __construct($name, $attackPoint) // ここを変更
   {
     $this->name = $name;
+    $this->attackPoint = $attackPoint;
+
   }
 
   public function getName()
