@@ -20,21 +20,19 @@ $enemies[] = new Enemy('ゴブリン', 20);
 $enemies[] = new Enemy('ボム', 25);
 $enemies[] = new Enemy('モルボル', 30);
 
+$messageObj = new Message;
+
+
 $turn = 1;
 $isFinishFlg = false;
 
 while (!$isFinishFlg) {
   echo "*** $turn ターン目 ***\n\n";
 
-  // 現在のHPの表示
-  foreach ($members as $member) {
-    echo $member->getName() . "　：　" . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
-  }
-  echo "\n";
-  foreach ($enemies as $enemy) {
-    echo $enemy->getName() . "　：　" . $enemy->getHitPoint() . "/" . $enemy::MAX_HITPOINT . "\n";
-  }
-  echo "\n";
+  // 仲間の表示
+  $messageObj->displayStatusMessage($members);
+  // 敵の表示
+  $messageObj->displayStatusMessage($enemies);
 
   // 攻撃
   foreach ($members as $member) {
@@ -43,7 +41,6 @@ while (!$isFinishFlg) {
     // 白魔道士の場合、味方のオブジェクトも渡す
     if (get_class($member) == "WhiteMage") {
       $member->doAttackWhiteMage($enemies, $members);
-
     } else {
       $member->doAttack($enemies); // 配列を渡すように変更
     }
@@ -92,6 +89,12 @@ while (!$isFinishFlg) {
   $turn++;
 }
 echo "★★★ 戦闘終了 ★★★\n\n";
+
+// 仲間の表示
+$messageObj->displayStatusMessage($members);
+
+// 敵の表示
+$messageObj->displayStatusMessage($enemies);
 
 // 現在のHPの表示
 foreach ($members as $member) {
