@@ -22,6 +22,23 @@ $enemies[] = new Enemy('モルボル', 30);
 
 $messageObj = new Message;
 
+// 終了条件の判定
+function isFinish($objects)
+{
+  $deathCnt = 0; // HPが0以下の仲間の数
+  foreach ($objects as $object) {
+    // １人でもHPが０を超えていたらfalseを返す
+    if ($object->getHitPoint() > 0) {
+      return false;
+    }
+    $deathCnt++;
+  }
+  // 仲間の数が死亡数(HPが０以下の数)と同じであればtrueを返す
+  if ($deathCnt === count($objects)) {
+    return true;
+  }
+}
+
 
 $turn = 1;
 $isFinishFlg = false;
@@ -39,32 +56,16 @@ while (!$isFinishFlg) {
   // 敵の攻撃
   $messageObj->displayAttackMessage($enemies, $members);
 
-  // 仲間全員か敵全員のHPが０になるまで繰り返す
-  $deathCnt = 0; // HPが0以下の仲間の数
-  foreach ($members as $member) {
-    if ($member->getHitPoint() > 0) {
-      $isFinishFlg = false;
-      break;
-    }
-    $deathCnt++;
-  }
-  if ($deathCnt === count($members)) {
-    $isFinishFlg = true;
-    echo "GAME OVER ....\n\n";
+  // 戦闘終了条件のチェック 仲間全員のHPが0 または、敵全員のHPが0
+  $isFinishFlg = isFinish($members);
+  if ($isFinishFlg) {
+    $message = "GAME OVER ....\n\n";
     break;
   }
 
-  $deathCnt = 0; // HPが0以下の敵の数
-  foreach ($enemies as $enemy) {
-    if ($enemy->getHitPoint() > 0) {
-      $isFinishFlg = false;
-      break;
-    }
-    $deathCnt++;
-  }
-  if ($deathCnt === count($enemies)) {
-    $isFinishFlg = true;
-    echo "♪♪♪ファンファーレ♪♪♪\n\n";
+  $isFinishFlg = isFinish($enemies);
+  if ($isFinishFlg) {
+    $message = "♪♪♪ファンファーレ♪♪♪\n\n";
     break;
   }
   $turn++;
