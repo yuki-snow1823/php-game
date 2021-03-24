@@ -6,6 +6,9 @@ require_once('./classes/Brave.php');
 require_once('./classes/BlackMage.php');
 require_once('./classes/WhiteMage.php');
 
+require_once('./classes/Message.php');
+
+
 // インスタンス化
 $members = array();
 $members[] = new Brave('ティーダ');
