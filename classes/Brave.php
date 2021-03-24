@@ -11,8 +11,11 @@ class Brave extends Human // 同階層だと呼び出せる？＝＞同階層で
     parent::__construct($name, $this->hitPoint, $this->attackPoint);
   }
     
-  public function doAttack($enemy)
+  public function doAttack($enemies)
   {
+
+    $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
+    $enemy = $enemies[$enemyIndex];
         //========== ここから追加する ==========
         // チェック１：自身のHPが0かどうか
         if ($this->hitPoint <= 0) {
@@ -29,7 +32,7 @@ class Brave extends Human // 同階層だと呼び出せる？＝＞同階層で
       $enemy->tookDamage($this->attackPoint * 1.5);
     } else {
       // もしくは通常攻撃、親クラスの
-      parent::doAttack($enemy);
+      parent::doAttack($enemies);
     }
     return true;
   }

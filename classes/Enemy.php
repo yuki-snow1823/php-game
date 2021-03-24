@@ -29,8 +29,19 @@ class Enemy
     return $this->attackPoint;
   }
 
-  public function doAttack($human)
+  public function doAttack($humans)
+
   {
+            //========== ここから追加する ==========
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
+          return false;
+      }
+
+      $humanIndex = rand(0, count($humans) - 1); // 添字は0から始まるので、-1する
+      $human = $humans[$humanIndex];
+
+      //========== ここまで追加する ==========
     echo "『" . $this->name . "』の攻撃！\n";
     echo "【" . $human->getName() . "】に " . $this->attackPoint . " のダメージ！\n";
     $human->tookDamage($this->attackPoint);
