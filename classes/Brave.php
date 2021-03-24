@@ -13,6 +13,13 @@ class Brave extends Human // 同階層だと呼び出せる？＝＞同階層で
     
   public function doAttack($enemy)
   {
+        //========== ここから追加する ==========
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
+          return false;
+      }
+      //========== ここまで追加する ==========
+
     // 乱数の発生
     if (rand(1, 3) === 1) {
       // スキルの発動
