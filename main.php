@@ -1,16 +1,26 @@
 <?php
-// ファイルのロード
-// 親クラスだからLives先にないとダメ
-require_once('./classes/Lives.php');
 
-require_once('./classes/Human.php');
-require_once('./classes/Enemy.php');
-require_once('./classes/Brave.php');
-require_once('./classes/BlackMage.php');
-require_once('./classes/WhiteMage.php');
-// 戦闘メッセージ管理
-require_once('./classes/Message.php');
+// ローダーのおかげで不要
 
+// // ファイルのロード
+// // 親クラスだからLives先にないとダメ
+// require_once('./classes/Lives.php');
+
+// require_once('./classes/Human.php');
+// require_once('./classes/Enemy.php');
+// require_once('./classes/Brave.php');
+// require_once('./classes/BlackMage.php');
+// require_once('./classes/WhiteMage.php');
+// // 戦闘メッセージ管理
+// require_once('./classes/Message.php');
+
+require_once('./lib/Loader.php');
+
+// オートロード
+$loader = new Loader();
+// classesフォルダの中身をロード対象ディレクトリとして登録
+$loader->regDirectory(__DIR__ . '/classes');
+$loader->register();
 
 // 敵味方グループインスタンス化
 $members = array();
