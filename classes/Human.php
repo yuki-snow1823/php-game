@@ -24,19 +24,18 @@ class Human
   // メソッド
   public function doAttack($enemies)
   {
-           //========== ここから追加する ==========
-        // チェック１：自身のHPが0かどうか
-        if ($this->hitPoint <= 0) {
-          return false;
-      }
+    // チェック１：自身のHPが0かどうか
+      if ($this->hitPoint <= 0) {
+        return false;
+    }
 
-      $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
-      $enemy = $enemies[$enemyIndex];
-      //========== ここまで追加する ==========
+    $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、count-1する。他も同様
+    $enemy = $enemies[$enemyIndex];
+
     echo "『" . $this->getName() . "』の攻撃！\n";
     echo "【" . $enemy->getName() . "】に " . $this->attackPoint . " のダメージ！\n";
     $enemy->tookDamage($this->attackPoint);
-  } // thisにはクラスが入る
+  } // thisにはこのクラスが入る
 
   public function tookDamage($damage)
   {

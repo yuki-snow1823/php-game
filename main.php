@@ -34,29 +34,10 @@ while (!$isFinishFlg) {
   // 敵の表示
   $messageObj->displayStatusMessage($enemies);
 
-  // 攻撃
-  foreach ($members as $member) {
-    // $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
-    // $enemy = $enemies[$enemyIndex];
-    // 白魔道士の場合、味方のオブジェクトも渡す
-    if (get_class($member) == "WhiteMage") {
-      $member->doAttackWhiteMage($enemies, $members);
-    } else {
-      $member->doAttack($enemies); // 配列を渡すように変更
-    }
-    echo "\n";
-  }
-  echo "\n";
-
-  foreach ($enemies as $enemy) {
-    // $memberIndex = rand(0, count($members) - 1); // 添字は0から始まるので、-1する
-    // $member = $members[$memberIndex];
-    // $enemy->doAttack($member);
-    $enemy->doAttack($members);
-
-    echo "\n";
-  }
-  echo "\n";
+  // 仲間の攻撃
+  $messageObj->displayAttackMessage($members, $enemies);
+  // 敵の攻撃
+  $messageObj->displayAttackMessage($enemies, $members);
 
   // 仲間全員か敵全員のHPが０になるまで繰り返す
   $deathCnt = 0; // HPが0以下の仲間の数
