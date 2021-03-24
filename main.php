@@ -13,6 +13,7 @@
 // require_once('./classes/WhiteMage.php');
 // // 戦闘メッセージ管理
 // require_once('./classes/Message.php');
+require_once('./lib/Utility.php');
 
 require_once('./lib/Loader.php');
 
@@ -35,24 +36,6 @@ $enemies[] = new Enemy('モルボル', 30);
 
 $messageObj = new Message;
 
-// 終了条件の判定
-function isFinish($objects)
-{
-  $deathCnt = 0; // HPが0以下の仲間の数
-  foreach ($objects as $object) {
-    // １人でもHPが０を超えていたらfalseを返す
-    if ($object->getHitPoint() > 0) {
-      return false;
-    }
-    $deathCnt++;
-  }
-  // 仲間の数が死亡数(HPが０以下の数)と同じであればtrueを返す
-  if ($deathCnt === count($objects)) {
-    return true;
-  }
-}
-
-
 $turn = 1;
 $isFinishFlg = false;
 
@@ -70,6 +53,7 @@ while (!$isFinishFlg) {
   $messageObj->displayAttackMessage($enemies, $members);
 
   // 戦闘終了条件のチェック 仲間全員のHPが0 または、敵全員のHPが0
+  // utilityから呼び出してる
   $isFinishFlg = isFinish($members);
   if ($isFinishFlg) {
     $message = "GAME OVER ....\n\n";
