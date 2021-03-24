@@ -96,7 +96,8 @@ class Lives
         $target = $targets[rand(0, count($targets) -1)];
         // 敵のHPが0以下の場合再度ターゲットを決める
         while ($target->getHitPoint() <= 0) {
-            $target = $targets[rand(0, count($targets) -1)];
+          // 再帰的。ここで決まった$targetがそのまま変数になる
+          $target = $targets[rand(0, count($targets) -1)];
         }
         return $target;
     }

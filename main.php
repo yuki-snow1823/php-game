@@ -1,15 +1,18 @@
 <?php
 // ファイルのロード
+// 親クラスだからLives先にないとダメ
+require_once('./classes/Lives.php');
+
 require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
 require_once('./classes/Brave.php');
 require_once('./classes/BlackMage.php');
 require_once('./classes/WhiteMage.php');
-
+// 戦闘メッセージ管理
 require_once('./classes/Message.php');
 
 
-// インスタンス化
+// 敵味方グループインスタンス化
 $members = array();
 $members[] = new Brave('ティーダ');
 $members[] = new WhiteMage('ユウナ');

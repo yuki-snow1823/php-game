@@ -8,20 +8,19 @@ class Brave extends Human // 同階層だと呼び出せる？＝＞同階層で
 
   public function __construct($name)
   {
-    parent::__construct($name, $this->hitPoint, $this->attackPoint);
+    // 子クラスの情報使って親のコンストラクト使うこともできる
+    parent::__construct($name, $this->hitPoint, $this->attackPoint, $this->intelligence);
   }
-    
+
   public function doAttack($enemies)
   {
 
-    $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
-    $enemy = $enemies[$enemyIndex];
-        //========== ここから追加する ==========
-        // チェック１：自身のHPが0かどうか
-        if ($this->hitPoint <= 0) {
-          return false;
-      }
-      //========== ここまで追加する ==========
+    // 自分のHPが0以上か、敵のHPが0以上かなどをチェックするメソッドを用意。
+    if (!$this->isEnableAttack($enemies)) {
+      return false;
+    }
+    // ターゲットの決定
+    $enemy = $this->selectTarget($enemies);
 
     // 乱数の発生
     if (rand(1, 3) === 1) {
