@@ -6,10 +6,24 @@ class Brave extends Human // 同階層だと呼び出せる？＝＞同階層で
   private $hitPoint = self::MAX_HITPOINT; // public → privateに変更
   private $attackPoint = 30; // public → privateに変更
 
-  public function __construct($name)
+  // $instanceには、自身のクラスのインスタンスが入ります。
+
+  private static $instance;
+
+  private function __construct($name) // コンストラクタはprivateにすることでシングルトンを実現
   {
     // 子クラスの情報使って親のコンストラクト使うこともできる
     parent::__construct($name, $this->hitPoint, $this->attackPoint, $this->intelligence);
+  }
+
+  // シングルトンで常にインスタンスは一つしか生成しない
+  public static function getInstance($name)
+  {
+    if (empty(self::$instance)) {
+      self::$instance = new Brave($name);
+    }
+
+    return self::$instance;
   }
 
   public function doAttack($enemies)
